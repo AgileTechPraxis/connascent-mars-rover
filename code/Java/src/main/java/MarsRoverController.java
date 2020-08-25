@@ -8,7 +8,7 @@ public class MarsRoverController implements IListenToMessages {
     }
 
     public void processMessage(String message) {
-        // do stuff
+        // do stuff with the engine
 
         //at the end call
         marsRoverSender.send(marsRoverEngine.currentState());
