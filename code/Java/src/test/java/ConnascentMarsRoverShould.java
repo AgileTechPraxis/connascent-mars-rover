@@ -21,7 +21,7 @@ public class ConnascentMarsRoverShould {
         when(marsRoverReceiver.packageReceived())
                 .thenReturn(commands[0], commands[1], commands[2], commands[3], commands[4], commands[5]);
 
-        MarsRover marsRover = new MarsRover(marsRoverReceiver, marsRoverSender);
+        MarsRover marsRover = new MarsRover(marsRoverReceiver, marsRoverSender, null);
 
         verify(marsRoverSender).send(finalPosition[0]);
         verify(marsRoverSender).send(finalPosition[1]);

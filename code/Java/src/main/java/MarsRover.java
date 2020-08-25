@@ -1,25 +1,21 @@
-public class MarsRover implements IListenToMessages {
+public class MarsRover {
     private MarsRoverReceiver marsRoverReceiver = null;
     private MarsRoverSender marsRoverSender = null;
+    private MarsRoverController controller;
 
     public MarsRover(
             MarsRoverReceiver marsRoverReceiver,
-            MarsRoverSender marsRoverSender) {
+            MarsRoverSender marsRoverSender,
+            MarsRoverController controller) {
 
         this.marsRoverReceiver = marsRoverReceiver;
         this.marsRoverSender = marsRoverSender;
+        this.controller = controller;
 
-        marsRoverReceiver.onValidMessageReceived(this);
+        marsRoverReceiver.onValidMessageReceived(this.controller);
+        controller.onExecutionEnded(this.marsRoverSender);
     }
 
-    //method called by the receiver, simulating an event raised
-    public void processMessage(String message){
-        // logic when message is received
-        // => translate the message in a sequence of commands
-        // => pass the commands into the engine to be executed
-        // => send back the final position to earth like
-        //marsRoverSender.SendMessage("5 5 N");
 
-    }
 }
 
