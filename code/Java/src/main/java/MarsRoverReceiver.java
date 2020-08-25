@@ -1,3 +1,4 @@
 public interface MarsRoverReceiver {
-    String receive();
+    String packageReceived();
+    void onValidMessageReceived(IListenToMessages listener);
 }

@@ -1,9 +1,5 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
-import javax.rmi.CORBA.Stub;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.mockito.Mockito.*;
@@ -20,9 +16,9 @@ public class ConnascentMarsRoverShould {
         String[] finalPosition = {"P", "X1", "Y3", "DN"};
         MarsRoverReceiver marsRoverReceiver = mock(MarsRoverReceiver.class);
         MarsRoverSender marsRoverSender = mock(MarsRoverSender.class);
-        when(marsRoverReceiver.receive())
+        when(marsRoverReceiver.packageReceived())
                 .thenReturn(init[0], init[1], init[2], init[3]);
-        when(marsRoverReceiver.receive())
+        when(marsRoverReceiver.packageReceived())
                 .thenReturn(commands[0], commands[1], commands[2], commands[3], commands[4], commands[5]);
 
         MarsRover marsRover = new MarsRover(marsRoverReceiver, marsRoverSender);
