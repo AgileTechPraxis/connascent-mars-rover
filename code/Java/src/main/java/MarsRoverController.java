@@ -1,21 +1,36 @@
-public class MarsRoverController implements IListenToMessages {
+public class MarsRoverController implements IProcessMessages  {
     private MarsRoverEngine marsRoverEngine;
-    private MarsRoverSender marsRoverSender;
+    private ISendNotificationBus marsRoverServiceWriter;
 
-    public MarsRoverController(MarsRoverEngine marsRoverEngine){
-
-        this.marsRoverEngine = marsRoverEngine;
+    public MarsRoverController(){
+        this.marsRoverEngine = new MarsRoverEngine();
     }
 
-    public void processMessage(String message) {
-        // do stuff with the engine
+    public void writesTo(ISendNotificationBus marsRoverServiceBus) {
 
-        //at the end call
-        marsRoverSender.send(marsRoverEngine.currentState());
+        this.marsRoverServiceWriter = marsRoverServiceBus;
     }
 
-    public void onExecutionEnded(MarsRoverSender marsRoverSender) {
+    public void readsFrom(IReadMessages marsRoverServiceBus) {
 
-        this.marsRoverSender = marsRoverSender;
+        marsRoverServiceBus.callBack(this);
     }
+
+    public void process(String messageReceived) {
+        // qua fa tutto il movimento
+
+        marsRoverServiceWriter.NotifyExecution("2 3 N");
+    }
+
+//    public void onMessageReceived(String message) {
+//        marsRoverEngine.execute(message);
+//
+//        //at the end call
+//        marsRoverSender.send(marsRoverEngine.currentState());
+//    }
+//
+//    public void onError() {
+//        marsRoverSender.sendError();
+//    }
+
 }
