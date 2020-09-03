@@ -1,13 +1,13 @@
 public class MarsRover {
     private final ServiceBus marsRoverServiceBus;
-    private MarsRoverReceiver marsRoverReceiver = null;
-    private final MarsRoverSender marsRoverSender;
-    private MarsRoverController controller = null;
+    private MarsRoverReceiver marsRoverReceiver;
+    private final ISendNotifications marsRoverSender;
+    private MarsRoverController controller;
 
     public MarsRover(
             ServiceBus marsRoverServiceBus,
             MarsRoverReceiver marsRoverReceiver,
-            MarsRoverSender marsRoverSender,
+            ISendNotifications marsRoverSender,
             MarsRoverController controller) {
         this.marsRoverServiceBus = marsRoverServiceBus;
         this.marsRoverReceiver = marsRoverReceiver;
@@ -19,7 +19,6 @@ public class MarsRover {
         this.controller.writesTo(this.marsRoverServiceBus);
         this.marsRoverSender.readsFrom(this.marsRoverServiceBus);
     }
-
-
+    
 }
 

@@ -22,15 +22,5 @@ public class MarsRoverController implements IProcessMessages  {
         marsRoverServiceWriter.NotifyExecution("2 3 N");
     }
 
-//    public void onMessageReceived(String message) {
-//        marsRoverEngine.execute(message);
-//
-//        //at the end call
-//        marsRoverSender.send(marsRoverEngine.currentState());
-//    }
-//
-//    public void onError() {
-//        marsRoverSender.sendError();
-//    }
 
 }

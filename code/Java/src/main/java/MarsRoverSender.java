@@ -1,15 +1,21 @@
 public class MarsRoverSender implements ISendNotifications {
-    public void readsFrom(ISendFinalStateBus marsRoverServiceBus){
-        marsRoverServiceBus.callBack(this);
-    };
 
-    public void send(String message){
-        //spaccalo in pacchetti e shipping
-    };
+    private INasaAntenna nasaAntenna;
 
-    public void sendError(){
-        //ritorna "ER"
+    public MarsRoverSender(INasaAntenna nasaAntenna) {
+        this.nasaAntenna = nasaAntenna;
     }
 
+    public void readsFrom(ISendFinalStateBus marsRoverServiceBus) {
+        marsRoverServiceBus.callBack(this);
+    }
 
+    public void send(String message) {
+        //spaccalo in pacchetti e shipping to Nasa Antenna
+        nasaAntenna.received(new String[]{"pippa", "puppa"});
+    }
+
+    public void sendError() {
+        //ritorna "ER"
+    }
 }
