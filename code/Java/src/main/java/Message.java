@@ -8,16 +8,15 @@ public class Message {
     private String y;
     private int commandsCount;
     private String direction;
-
-    public int getCommandsCount() {
-        return commandsCount;
-    }
+    private String positionMessage;
+    private String commandsMessage;
 
     public Message(ArrayList<String> datagrams) {
-        parsePosition(datagrams);
+        this.positionMessage = parsePosition(datagrams);
+        this.commandsMessage = parseCommands(datagrams);
     }
 
-    private void parsePosition(ArrayList<String> datagrams) {
+    private String parsePosition(ArrayList<String> datagrams) {
         for (String datagram :
                 datagrams) {
             if (datagram.startsWith("X"))
@@ -30,14 +29,31 @@ public class Message {
                 this.commandsCount = parseInt(datagram.substring(1));
             }
         }
+        return String.format("100 100\n%s %s %s\n", this.x, this.y, this.direction);
     }
 
     @Override
     public String toString() {
-        return String.format("100 100\n%s %s %s\n", this.x, this.y, this.direction);
+        return String.format("%s%s", this.positionMessage, this.commandsMessage);
     }
 
     public boolean isValid() {
-        return this.x != null && this.y != null && this.direction != null;
+        return this.x != null &&
+                this.y != null &&
+                this.direction != null &&
+                this.commandsCount > 0 &&
+                this.commandsMessage.length() == this.commandsCount;
+    }
+
+    String parseCommands(ArrayList<String> datagrams) {
+        String commandsMessage = "";
+        for (int commandNumber = 1; commandNumber <= commandsCount; commandNumber++) {
+            for (String datagram : datagrams) {
+                if (datagram.startsWith(String.valueOf(commandNumber))) {
+                    commandsMessage += datagram.substring(1);
+                }
+            }
+        }
+        return commandsMessage;
     }
 }

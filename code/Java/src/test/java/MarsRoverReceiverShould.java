@@ -23,13 +23,16 @@ public class MarsRoverReceiverShould {
         return Stream.of(
                 Arguments.of(
                         new String[]{"X2", "Y5", "DN", "M5", "1F", "2L", "3F", "4R", "5F"},
-                        "100 100\n2 5 N\nFLFRF")
+                        "100 100\n2 5 N\nFLFRF"),
+                Arguments.of(
+                        new String[]{"X2", "Y5", "DN", "M5", "2L", "3F", "4R", "5F"},
+                        "ER")
         );
     }
 
     @ParameterizedTest
     @MethodSource("valuesProvider")
-    void rebuildMessageCorrectly(String[] packages, String rebuiltMessage) {
+    void rebuildMessageCorrectly(String[] packages, String rebuiltMessage) throws InterruptedException {
         for (String datagram : packages) {
             marsRoverReceiver.received(datagram);
         }

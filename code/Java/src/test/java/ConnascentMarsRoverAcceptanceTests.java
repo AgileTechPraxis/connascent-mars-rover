@@ -21,7 +21,7 @@ public class ConnascentMarsRoverAcceptanceTests {
     }
 
     @Test
-    void move_following_commands() {
+    void move_following_commands() throws InterruptedException {
         String[] inputPackages = {"X2", "Y5", "DN", "M5", "1F", "2L", "3F", "4R", "5F"};
         for (String pack : inputPackages) {
             marsRoverReceiver.received(pack);
