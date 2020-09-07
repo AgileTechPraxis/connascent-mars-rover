@@ -5,6 +5,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class ConnascentMarsRoverAcceptanceTests {
+    private final int maxDelay = 3000;
     private MarsRoverReceiver marsRoverReceiver;
     private ISendNotifications marsRoverSender;
     private INasaAntenna nasaAntenna;
@@ -13,7 +14,7 @@ public class ConnascentMarsRoverAcceptanceTests {
     @BeforeEach
     void setUp() {
         nasaAntenna = mock(INasaAntenna.class);
-        marsRoverReceiver = new MarsRoverReceiver();
+        marsRoverReceiver = new MarsRoverReceiver(maxDelay);
         marsRoverSender = new MarsRoverSender(nasaAntenna);
         MarsRoverController marsRoverController = new MarsRoverController();
         ServiceBus marsRoverBus = new ServiceBus();

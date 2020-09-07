@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+
 public interface ISmartTimer {
-    void cancel();
+    ISmartTimer waitMillisecond(int milliseconds);
+
+    ISmartTimer beforeDoing(INotifier notifyMessage, ArrayList<String> datagrams);
+
 }

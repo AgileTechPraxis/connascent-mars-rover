@@ -15,9 +15,7 @@ public class MarsRoverReceiverShould {
 
     @BeforeEach
     void setUp() {
-        marsRoverReceiver = new MarsRoverReceiver();
-        mockServiceBus = mock(IMessageReceivedBus.class);
-        marsRoverReceiver.writesTo(mockServiceBus);
+
     }
 
     private static Stream<Arguments> valuesProvider() {
@@ -29,7 +27,7 @@ public class MarsRoverReceiverShould {
                 Arguments.of(
                         new String[]{"X2", "Y5", "DN", "M5", "2L", "3F", "4R", "5F"},
                         "ER",
-                        3500)
+                        200)
         );
     }
 
@@ -39,6 +37,10 @@ public class MarsRoverReceiverShould {
             String[] packages,
             String rebuiltMessage,
             int sleepTime) throws InterruptedException {
+        int maxDelay = 100;
+        marsRoverReceiver = new MarsRoverReceiver(maxDelay);
+        mockServiceBus = mock(IMessageReceivedBus.class);
+        marsRoverReceiver.writesTo(mockServiceBus);
 
         for (String datagram : packages) {
             marsRoverReceiver.received(datagram);
