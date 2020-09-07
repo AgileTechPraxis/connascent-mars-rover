@@ -3,7 +3,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class SmartTimer implements ISmartTimer {
-    private int milllisecondsToWait;
+    private int millisecondsToWait;
     private boolean isRunning = false;
     private Timer timer = new Timer();
     private TimerTask task;
@@ -12,7 +12,7 @@ public class SmartTimer implements ISmartTimer {
     @Override
     public ISmartTimer waitMillisecond(int milliseconds) {
         reset();
-        this.milllisecondsToWait = milliseconds;
+        this.millisecondsToWait = milliseconds;
         return this;
     }
 
@@ -27,7 +27,7 @@ public class SmartTimer implements ISmartTimer {
             }
         };
 
-        timer.schedule(task, milllisecondsToWait, 1);
+        timer.schedule(task, millisecondsToWait, 1);
         return this;
     }
 
