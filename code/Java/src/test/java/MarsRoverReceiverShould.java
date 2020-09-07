@@ -37,6 +37,7 @@ public class MarsRoverReceiverShould {
             marsRoverReceiver.received(datagram);
         }
 
+        Thread.sleep(3500);
         verify(mockServiceBus).NotifyMessageReceived(rebuiltMessage);
     }
 }
