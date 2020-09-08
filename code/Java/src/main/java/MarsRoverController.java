@@ -1,9 +1,18 @@
-public class MarsRoverController implements IProcessMessages  {
+import App.CommandInterpreter;
+import App.MarsRoverEngine;
+import Commands.ICommand;
+import Model.Position;
+
+import java.util.ArrayList;
+
+public class MarsRoverController implements IProcessMessages {
     private MarsRoverEngine marsRoverEngine;
+    private CommandInterpreter commandInterpreter;
     private ISendNotificationBus marsRoverServiceWriter;
 
-    public MarsRoverController(){
+    public MarsRoverController() {
         this.marsRoverEngine = new MarsRoverEngine();
+        commandInterpreter = new CommandInterpreter();
     }
 
     public void writesTo(ISendNotificationBus marsRoverServiceBus) {
@@ -17,10 +26,9 @@ public class MarsRoverController implements IProcessMessages  {
     }
 
     public void process(String messageReceived) {
-        // qua fa tutto il movimento
-
-        marsRoverServiceWriter.NotifyExecution("2 3 N");
+        ArrayList<ICommand> commands = commandInterpreter.translate(messageReceived);
+        marsRoverEngine.execute(commands);
+        Position finalPosition = marsRoverEngine.getPosition();
+        marsRoverServiceWriter.NotifyExecution(finalPosition.toString());
     }
-
-
 }

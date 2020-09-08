@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -21,28 +22,36 @@ public class CommandInterpreterShould {
         return Stream.of(
                 arguments("""
                         5 5
-                        1 2 N
-                        LMLMLMLMM""", new StartingPositionCommand(new Position(new Coordinate(1, 2), Direction.NORTH))),
+                        3 3 E
+                        LFLFR""", List.of(
+                        new InitialisationCommand(new Coordinate(5, 5)),
+                        new StartingPositionCommand(new Position(new Coordinate(3, 3), Direction.EAST)),
+                        new TurnLeftCommand(),
+                        new MoveForwardCommand(),
+                        new TurnLeftCommand(),
+                        new MoveForwardCommand(),
+                        new TurnRightCommand())),
                 arguments("""
                         5 5
                         3 3 E
-                        LMLMLMLMM""", new StartingPositionCommand(new Position(new Coordinate(3, 3), Direction.EAST))),
+                        L""", List.of(
+                        new InitialisationCommand(new Coordinate(5, 5)),
+                        new StartingPositionCommand(new Position(new Coordinate(3, 3), Direction.EAST)),
+                        new TurnLeftCommand())),
                 arguments("""
                         5 5
                         3 3 E
-                        LMLMLMLMM""", new InitialisationCommand(new Coordinate(5, 5))),
+                        F""", List.of(
+                        new InitialisationCommand(new Coordinate(5, 5)),
+                        new StartingPositionCommand(new Position(new Coordinate(3, 3), Direction.EAST)),
+                        new MoveForwardCommand())),
                 arguments("""
                         5 5
                         3 3 E
-                        L""", new TurnLeftCommand()),
-                arguments("""
-                        5 5
-                        3 3 E
-                        M""", new MoveForwardCommand()),
-                arguments("""
-                        5 5
-                        3 3 E
-                        R""", new TurnRightCommand())
+                        R""", List.of(
+                        new InitialisationCommand(new Coordinate(5, 5)),
+                        new StartingPositionCommand(new Position(new Coordinate(3, 3), Direction.EAST)),
+                        new TurnRightCommand()))
         );
     }
 
@@ -53,12 +62,12 @@ public class CommandInterpreterShould {
 
     @ParameterizedTest
     @MethodSource("valueProvider")
-    void extractStartingPosition(String inputCommand, ICommand expected) {
+    void parseCommands(String inputCommand, List<ICommand> expectedCommnads) {
         CommandInterpreter commandInterpreter = new CommandInterpreter();
 
-        List<ICommand> commandList = commandInterpreter.translate(inputCommand);
+        List<ICommand> commands = commandInterpreter.translate(inputCommand);
 
-        assertTrue(commandList.contains(expected));
+        assertEquals(expectedCommnads, commands);
     }
 
 }

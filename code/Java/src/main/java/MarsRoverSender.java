@@ -12,7 +12,7 @@ public class MarsRoverSender implements ISendNotifications {
 
     public void send(String message) {
         //spaccalo in pacchetti e shipping to Nasa Antenna
-        nasaAntenna.received(new String[]{"pippa", "puppa"});
+        nasaAntenna.received(new String[]{message});
     }
 
     public void sendError() {

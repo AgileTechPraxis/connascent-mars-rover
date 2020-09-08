@@ -38,10 +38,9 @@ public class CommandInterpreter {
         for (Character command : lines[2].toCharArray()){
             switch (command){
                 case 'L'-> movementCommands.add(new TurnLeftCommand());
-                case 'M'-> movementCommands.add(new MoveForwardCommand());
+                case 'F'-> movementCommands.add(new MoveForwardCommand());
                 case 'R'-> movementCommands.add(new TurnRightCommand());
             }
-
         }
         return movementCommands;
     }
