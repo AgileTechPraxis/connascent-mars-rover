@@ -12,7 +12,7 @@ public class MarsRoverSender implements ISendNotifications {
     }
 
     public void readsFrom(ISendFinalStateBus marsRoverServiceBus) {
-        marsRoverServiceBus.callBack(this);
+        marsRoverServiceBus.trigger(this);
     }
 
     public void send(String message) {

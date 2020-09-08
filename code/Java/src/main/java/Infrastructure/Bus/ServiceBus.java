@@ -16,7 +16,7 @@ public class ServiceBus implements
         this.marsRoverController = marsRoverController;
     }
 
-    public void callBack(ISendNotifications marsRoverSender) {
+    public void trigger(ISendNotifications marsRoverSender) {
         this.marsRoverSender = marsRoverSender;
     }
 
