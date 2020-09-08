@@ -1,6 +1,13 @@
+package Infrastructure.SpaceComm;
+
+import Infrastructure.Bus.IMessageReceivedBus;
+import Infrastructure.INotifier;
+import Infrastructure.Bus.IWriteToServiceBus;
+import Infrastructure.Timing.SmartTimer;
+
 import java.util.ArrayList;
 
-public class MarsRoverReceiver implements INotifyMessageReceived {
+public class MarsRoverReceiver implements IWriteToServiceBus {
 
     private IMessageReceivedBus marsRoverServiceBus;
     private ArrayList<String> datagrams = new ArrayList<>();
@@ -15,6 +22,7 @@ public class MarsRoverReceiver implements INotifyMessageReceived {
     }
 
     public void writesTo(IMessageReceivedBus marsRoverServiceBus) {
+
         this.marsRoverServiceBus = marsRoverServiceBus;
     }
 

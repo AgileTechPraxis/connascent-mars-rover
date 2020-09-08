@@ -1,3 +1,9 @@
+package Infrastructure.Bus;
+
+import Infrastructure.IProcessMessages;
+import Infrastructure.IReadMessages;
+import Infrastructure.ISendNotifications;
+
 public class ServiceBus implements
         IMessageReceivedBus,
         ISendFinalStateBus,
@@ -21,6 +27,4 @@ public class ServiceBus implements
     public void NotifyExecution(String finalState) {
         this.marsRoverSender.send(finalState);
     }
-
-
 }

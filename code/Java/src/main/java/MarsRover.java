@@ -1,3 +1,8 @@
+import Infrastructure.ISendNotifications;
+import Infrastructure.MarsRoverController;
+import Infrastructure.Bus.ServiceBus;
+import Infrastructure.SpaceComm.MarsRoverReceiver;
+
 public class MarsRover {
     private final ServiceBus marsRoverServiceBus;
     private MarsRoverReceiver marsRoverReceiver;

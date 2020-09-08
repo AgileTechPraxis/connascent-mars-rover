@@ -1,3 +1,8 @@
+package Infrastructure.SpaceComm;
+
+import Infrastructure.Bus.ISendFinalStateBus;
+import Infrastructure.ISendNotifications;
+
 public class MarsRoverSender implements ISendNotifications {
 
     private INasaAntenna nasaAntenna;

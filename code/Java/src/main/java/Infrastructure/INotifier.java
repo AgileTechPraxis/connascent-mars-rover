@@ -1,3 +1,5 @@
+package Infrastructure;
+
 import java.util.ArrayList;
 
 public interface INotifier {

@@ -1,3 +1,7 @@
+package Infrastructure.Timing;
+
+import Infrastructure.INotifier;
+
 import java.util.ArrayList;
 
 public interface ISmartTimer {
