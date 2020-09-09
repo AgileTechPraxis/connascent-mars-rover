@@ -40,9 +40,11 @@ If the rover is not able to verify the completenss of the message in 3 seconds a
 
 ![](./mars-rover-connascent.jpg)
 
-#### CONNASCENCE TO FIND:
-- Connascence of Execution Order
-- Connascence of Timing
-- Connascence of Meaning
-- Connascence of Position
-- Connascence of Value
+### GOAL OF THE EXERCISE
+
+We have implemented a version of this exercise with a few connascent elements in it.
+There are at least 5 types of Connascence of the bad kind, either static and dynamic.
+
+Can you find them all? Could you improve them?
+
+
