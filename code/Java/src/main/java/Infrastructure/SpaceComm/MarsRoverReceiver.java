@@ -43,10 +43,11 @@ public class MarsRoverReceiver implements IWriteToServiceBus {
 
     private void notifyMessage(ArrayList<String> datagrams) {
         Message message = new Message(datagrams);
-        if (message.isValid())
+        if (message.isValid()) {
             marsRoverServiceBus.NotifyMessageReceived(message.toString());
-        else
-            marsRoverServiceBus.NotifyMessageReceived("ER");
+            return;
+        }
+        marsRoverServiceBus.NotifyError();
     }
 
 }
