@@ -1,3 +1,8 @@
+import Infrastructure.ISendNotifications;
+import Infrastructure.MarsRoverController;
+import Infrastructure.Bus.ServiceBus;
+import Infrastructure.SpaceComm.MarsRoverReceiver;
+
 public class MarsRover {
     private final ServiceBus marsRoverServiceBus;
     private MarsRoverReceiver marsRoverReceiver;
@@ -15,10 +20,10 @@ public class MarsRover {
         this.controller = controller;
 
         this.marsRoverReceiver.writesTo(this.marsRoverServiceBus);
+
         this.controller.readsFrom(this.marsRoverServiceBus);
         this.controller.writesTo(this.marsRoverServiceBus);
+
         this.marsRoverSender.readsFrom(this.marsRoverServiceBus);
     }
-    
 }
-

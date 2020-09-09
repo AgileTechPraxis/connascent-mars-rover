@@ -9,8 +9,8 @@
         <module name="ConnascentMarsRover" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ConnascentMarsRover" target="8" />
+    <bytecodeTargetLevel target="14">
+      <module name="ConnascentMarsRover" target="14" />
     </bytecodeTargetLevel>
   </component>
 </project>
