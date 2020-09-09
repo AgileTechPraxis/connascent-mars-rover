@@ -3,6 +3,7 @@ package Infrastructure.SpaceComm;
 import Infrastructure.Bus.IMessageReceivedBus;
 import Infrastructure.INotifier;
 import Infrastructure.Bus.IWriteToServiceBus;
+import Infrastructure.Timing.IWaitMillisecons;
 import Infrastructure.Timing.SmartTimer;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ public class MarsRoverReceiver implements IWriteToServiceBus {
 
     private IMessageReceivedBus marsRoverServiceBus;
     private ArrayList<String> datagrams = new ArrayList<>();
-    private SmartTimer smartTimer = new SmartTimer();
+    private IWaitMillisecons smartTimer = SmartTimer.New();
 
     private INotifier notifyMessage = (data) -> this.notifyMessage(data);
     private int maxDelay;

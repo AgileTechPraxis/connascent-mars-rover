@@ -53,7 +53,7 @@ public class ConnascentMarsRoverAcceptanceTests {
         for (String pack : inputPackages) {
             marsRoverReceiver.received(pack);
         }
-        Thread.sleep(3000);
+        Thread.sleep(3050);
         verify(nasaAntenna).received(new String[]{"ER"});
     }
 }

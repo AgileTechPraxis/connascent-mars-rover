@@ -12,6 +12,11 @@ public class SmartTimer implements ISmartTimer {
     private Timer timer = new Timer();
     private TimerTask task;
 
+    private SmartTimer(){}
+
+    public static IWaitMillisecons New() {
+        return new SmartTimer();
+    }
 
     @Override
     public ISmartTimer waitMillisecond(int milliseconds) {
