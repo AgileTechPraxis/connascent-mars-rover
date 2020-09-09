@@ -14,12 +14,7 @@ public class MarsRoverReceiver implements IWriteToServiceBus {
     private SmartTimer smartTimer = new SmartTimer();
 
     private INotifier notifyMessage = (data) -> this.notifyMessage(data);
-    private int maxDelay;
-
-    public MarsRoverReceiver(int maxDelay) {
-
-        this.maxDelay = maxDelay;
-    }
+    private final int MAX_DELAY_MILLISECONDS = 3000;
 
     public void writesTo(IMessageReceivedBus marsRoverServiceBus) {
 
@@ -37,7 +32,7 @@ public class MarsRoverReceiver implements IWriteToServiceBus {
         }
 
         smartTimer
-                .waitMillisecond(maxDelay)
+                .waitMillisecond(MAX_DELAY_MILLISECONDS)
                 .beforeDoing(notifyMessage, this.datagrams);
     }
 

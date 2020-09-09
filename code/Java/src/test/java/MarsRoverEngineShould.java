@@ -23,32 +23,32 @@ public class MarsRoverEngineShould {
                 arguments(
                          new ICommand[]{
                                 new InitialisationCommand(new Coordinate(5, 5)),
-                                new StartingPositionCommand(new Position(new Coordinate(2, 2), Direction.NORTH))
+                                new StartingPositionCommand( new Position(2,2,"N")),
                         },
-                        new Position(new Coordinate(2, 2), Direction.NORTH)
+                        new Position(2,2,"N")
                 ),
                 arguments(
                         new ICommand[]{
                                 new InitialisationCommand(new Coordinate(5, 5)),
-                                new StartingPositionCommand(new Position(new Coordinate(2, 2), Direction.NORTH)),
+                                new StartingPositionCommand(new Position( 2,2,"N")),
                                 new TurnLeftCommand(),
                         },
-                        new Position(new Coordinate(2, 2), Direction.WEST)
+                        new Position(2,2,"W")
                 ),
                 arguments(
                         new ICommand[]{
                                 new InitialisationCommand(new Coordinate(5, 5)),
-                                new StartingPositionCommand(new Position(new Coordinate(2, 2), Direction.NORTH)),
+                                new StartingPositionCommand(new Position(2,2,"N")),
                                 new TurnRightCommand(),
                         },
-                        new Position(new Coordinate(2, 2), Direction.EAST)),
+                        new Position(2,2,"E")),
                 arguments(
                         new ICommand[]{
                                 new InitialisationCommand(new Coordinate(5, 5)),
-                                new StartingPositionCommand(new Position(new Coordinate(2, 2), Direction.NORTH)),
+                                new StartingPositionCommand(new Position( 2,2,"N")),
                                 new MoveForwardCommand(),
                         },
-                        new Position(new Coordinate(2, 3), Direction.NORTH))
+                        new Position(2,3,"N"))
         );
     }
 

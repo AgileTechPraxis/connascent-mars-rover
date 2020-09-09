@@ -7,7 +7,6 @@ import Model.Position;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static java.lang.Integer.parseInt;
@@ -58,7 +57,7 @@ public class CommandInterpreter {
 
         Coordinate coordinate = new Coordinate(parseInt(coords[0]), parseInt(coords[1]));
         Direction direction = letterToDirection.get(coords[2]);
-        Position position = new Position(coordinate, direction);
+        Position position = new Position(coordinate.x(), coordinate.y(), direction.toString());
 
         return new StartingPositionCommand(position);
     }

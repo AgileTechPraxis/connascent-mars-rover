@@ -39,3 +39,10 @@ If the rover is not able to verify the completenss of the message in 3 seconds a
 ##### EXAMPLE:
 
 ![](./mars-rover-connascent.jpg)
+
+#### CONNASCENCE TO FIND:
+- Connascence of Execution Order
+- Connascence of Timing
+- Connascence of Meaning
+- Connascence of Position
+- Connascence of Value

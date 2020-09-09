@@ -15,11 +15,6 @@ public class MarsRoverReceiverShould {
     MarsRoverReceiver marsRoverReceiver;
     private IMessageReceivedBus mockServiceBus;
 
-    @BeforeEach
-    void setUp() {
-
-    }
-
     private static Stream<Arguments> valuesProvider() {
         return Stream.of(
                 Arguments.of(
@@ -34,8 +29,7 @@ public class MarsRoverReceiverShould {
     @ParameterizedTest
     @MethodSource("valuesProvider")
     void rebuildMessageCorrectly(String[] packages, String rebuiltMessage) {
-        int maxDelay = 100;
-        marsRoverReceiver = new MarsRoverReceiver(maxDelay);
+        marsRoverReceiver = new MarsRoverReceiver();
         mockServiceBus = mock(IMessageReceivedBus.class);
         marsRoverReceiver.writesTo(mockServiceBus);
 
@@ -48,8 +42,8 @@ public class MarsRoverReceiverShould {
 
     @Test
     void notifyErrorCorrectly() throws InterruptedException {
-        int maxDelay = 100;
-        marsRoverReceiver = new MarsRoverReceiver(maxDelay);
+        int sleepTime = 3100;
+        marsRoverReceiver = new MarsRoverReceiver();
         mockServiceBus = mock(IMessageReceivedBus.class);
         marsRoverReceiver.writesTo(mockServiceBus);
 
@@ -58,7 +52,7 @@ public class MarsRoverReceiverShould {
             marsRoverReceiver.received(datagram);
         }
 
-        Thread.sleep(130);
+        Thread.sleep(sleepTime);
 
         verify(mockServiceBus).NotifyError();
     }

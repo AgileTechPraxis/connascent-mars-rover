@@ -20,7 +20,7 @@ public class ConnascentMarsRoverAcceptanceTests {
     @BeforeEach
     void setUp() {
         nasaAntenna = mock(INasaAntenna.class);
-        marsRoverReceiver = new MarsRoverReceiver(maxDelay);
+        marsRoverReceiver = new MarsRoverReceiver();
         marsRoverSender = new MarsRoverSender(nasaAntenna);
         MarsRoverController marsRoverController = new MarsRoverController();
         ServiceBus marsRoverBus = new ServiceBus();
@@ -53,7 +53,7 @@ public class ConnascentMarsRoverAcceptanceTests {
         for (String pack : inputPackages) {
             marsRoverReceiver.received(pack);
         }
-        Thread.sleep(3000);
+        Thread.sleep(3100);
         verify(nasaAntenna).received(new String[]{"ER"});
     }
 }
