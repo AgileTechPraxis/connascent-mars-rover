@@ -11,7 +11,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class ConnascentMarsRoverAcceptanceTests {
-    private final int maxDelay = 3000;
+    private final int maxDelay = 100;
     private MarsRoverReceiver marsRoverReceiver;
     private ISendNotifications marsRoverSender;
     private INasaAntenna nasaAntenna;
@@ -53,7 +53,7 @@ public class ConnascentMarsRoverAcceptanceTests {
         for (String pack : inputPackages) {
             marsRoverReceiver.received(pack);
         }
-        Thread.sleep(3050);
+        Thread.sleep(maxDelay + 100);
         verify(nasaAntenna).received(new String[]{"ER"});
     }
 }

@@ -8,11 +8,6 @@ import static org.mockito.Mockito.verify;
 
 public class MarsRoverSenderShould {
     MarsRoverSender marsRoverSender;
-    private IMessageReceivedBus mockServiceBus;
-
-    @BeforeEach
-    void setUp() {
-    }
 
     @Test
     void sendMessageCorrectly()  {

@@ -15,11 +15,6 @@ public class MarsRoverReceiverShould {
     MarsRoverReceiver marsRoverReceiver;
     private IMessageReceivedBus mockServiceBus;
 
-    @BeforeEach
-    void setUp() {
-
-    }
-
     private static Stream<Arguments> valuesProvider() {
         return Stream.of(
                 Arguments.of(
@@ -58,7 +53,7 @@ public class MarsRoverReceiverShould {
             marsRoverReceiver.received(datagram);
         }
 
-        Thread.sleep(130);
+        Thread.sleep(maxDelay + 30);
 
         verify(mockServiceBus).NotifyError();
     }
