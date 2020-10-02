@@ -4,4 +4,11 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="App\Configuration" />
+      <Folder Include="Commands" />
+      <Folder Include="Infrastructure\Timing" />
+      <Folder Include="Model" />
+    </ItemGroup>
+
 </Project>
