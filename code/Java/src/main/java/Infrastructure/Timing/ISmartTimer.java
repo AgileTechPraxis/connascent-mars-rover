@@ -1,12 +1,5 @@
 package Infrastructure.Timing;
 
-import Infrastructure.INotifier;
+public interface ISmartTimer extends IWaitMillisecons, IInvokeNotifier {}
 
-import java.util.ArrayList;
 
-public interface ISmartTimer {
-    ISmartTimer waitMillisecond(int milliseconds);
-
-    ISmartTimer beforeDoing(INotifier notifyMessage, ArrayList<String> datagrams);
-
-}

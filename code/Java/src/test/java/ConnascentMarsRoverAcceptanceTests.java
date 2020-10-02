@@ -11,7 +11,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class ConnascentMarsRoverAcceptanceTests {
-    private final int maxDelay = 3000;
+    private final int maxDelay = 100;
     private MarsRoverReceiver marsRoverReceiver;
     private ISendNotifications marsRoverSender;
     private INasaAntenna nasaAntenna;
@@ -35,5 +35,25 @@ public class ConnascentMarsRoverAcceptanceTests {
         }
 
         verify(nasaAntenna).received(new String[]{"X1", "Y7", "DN"});
+    }
+
+    @Test
+    void move_following_commands_any_order() {
+        String[] inputPackages = {"DN", "M5","X2", "Y5", "3F", "4R", "1F", "2L",  "5F"};
+        for (String pack : inputPackages) {
+            marsRoverReceiver.received(pack);
+        }
+
+        verify(nasaAntenna).received(new String[]{"X1", "Y7", "DN"});
+    }
+
+    @Test
+    void move_following_commands_incomplete() throws InterruptedException {
+        String[] inputPackages = {"DN", "M5","X2", "Y5", "3F", "1F", "2L",  "5F"};
+        for (String pack : inputPackages) {
+            marsRoverReceiver.received(pack);
+        }
+        Thread.sleep(maxDelay + 100);
+        verify(nasaAntenna).received(new String[]{"ER"});
     }
 }

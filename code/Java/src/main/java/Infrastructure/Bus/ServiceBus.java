@@ -24,6 +24,10 @@ public class ServiceBus implements
         this.marsRoverController.process(rebuiltMessage);
     }
 
+    public void NotifyError() {
+        this.marsRoverSender.sendError();
+    }
+
     public void NotifyExecution(String finalState) {
         this.marsRoverSender.send(finalState);
     }

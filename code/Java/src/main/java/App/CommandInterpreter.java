@@ -1,24 +1,21 @@
 package App;
-
 import Commands.*;
 import Model.Coordinate;
 import Model.Direction;
 import Model.Position;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
+import static App.Configuration.Primitives.*;
 import static java.lang.Integer.parseInt;
 
 public class CommandInterpreter {
 
     private Map<String, Direction> letterToDirection = new HashMap<>() {{
-        put("N", Direction.NORTH);
-        put("E", Direction.EAST);
-        put("S", Direction.SOUTH);
-        put("W", Direction.WEST);
+        put(NORTH, Direction.NORTH);
+        put(EAST, Direction.EAST);
+        put(SOUTH, Direction.SOUTH);
+        put(WEST, Direction.WEST);
     }};
 
     public ArrayList<ICommand> translate(String commands) {
@@ -37,9 +34,9 @@ public class CommandInterpreter {
 
         for (Character command : lines[2].toCharArray()){
             switch (command){
-                case 'L'-> movementCommands.add(new TurnLeftCommand());
-                case 'F'-> movementCommands.add(new MoveForwardCommand());
-                case 'R'-> movementCommands.add(new TurnRightCommand());
+                case TURN_LEFT -> movementCommands.add(new TurnLeftCommand());
+                case MOVE_FORWARD -> movementCommands.add(new MoveForwardCommand());
+                case TURN_RIGHT -> movementCommands.add(new TurnRightCommand());
             }
         }
         return movementCommands;

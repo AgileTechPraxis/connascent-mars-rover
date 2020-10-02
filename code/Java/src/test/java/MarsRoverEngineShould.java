@@ -52,11 +52,6 @@ public class MarsRoverEngineShould {
         );
     }
 
-    @BeforeEach
-    void setUp() {
-
-    }
-
     @ParameterizedTest
     @MethodSource("valueProvider")
     void executeCommands(ICommand[] commands, Position finalPosition) {
