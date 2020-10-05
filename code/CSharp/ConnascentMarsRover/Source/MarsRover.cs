@@ -1,3 +1,7 @@
+using Source.Infrastructure;
+using Source.Infrastructure.Bus;
+using Source.Infrastructure.SpaceComm;
+
 namespace Source
 {
     public class MarsRover

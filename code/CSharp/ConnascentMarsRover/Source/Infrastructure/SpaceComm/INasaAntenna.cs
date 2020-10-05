@@ -1,4 +1,4 @@
-namespace Source
+namespace Source.Infrastructure.SpaceComm
 {
     public interface INasaAntenna
     {

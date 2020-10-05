@@ -3,10 +3,13 @@ using NUnit.Framework;
 using Source;
 using NSubstitute;
 using NSubstitute.ReceivedExtensions;
+using Source.Infrastructure;
+using Source.Infrastructure.Bus;
+using Source.Infrastructure.SpaceComm;
 
 namespace Tests
 {
-    public class Tests
+    public class ConnascentMarsRoverScenarios
     {
         private const int MaxDelay = 100;
         private MarsRoverReceiver _marsRoverReceiver;
