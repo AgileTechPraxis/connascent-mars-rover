@@ -30,5 +30,26 @@ namespace Source.Model
         {
             return HashCode.Combine(_x, _y);
         }
+
+        public Coordinate MoveNorth() {
+            return new Coordinate(_x, _y + 1);
+        }
+
+        public Coordinate MoveEast() {
+            return new Coordinate(_x + 1, _y);
+        }
+
+        public Coordinate MoveSouth() {
+            return new Coordinate(_x, _y - 1);
+        }
+
+        public Coordinate MoveWest() {
+            return new Coordinate(_x - 1, _y);
+        }
+        
+        public override string ToString()
+        {
+            return $"{_x.ToString()} {_y.ToString()}";
+        }
     }
 }

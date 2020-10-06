@@ -28,5 +28,10 @@ namespace Source.Commands
         {
             return (_position != null ? _position.GetHashCode() : 0);
         }
+
+        public Position Execute(Position position)
+        {
+            return _position;
+        }
     }
 }

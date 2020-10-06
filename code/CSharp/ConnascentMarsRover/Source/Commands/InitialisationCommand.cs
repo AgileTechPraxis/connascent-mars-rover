@@ -28,5 +28,10 @@ namespace Source.Commands
         {
             return (_coordinate != null ? _coordinate.GetHashCode() : 0);
         }
+
+        public Position Execute(Position position)
+        {
+            return position;
+        }
     }
 }

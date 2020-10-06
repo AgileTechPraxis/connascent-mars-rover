@@ -1,21 +1,39 @@
 using System;
+using static Source.Model.Direction;
 
 namespace Source.Model
 {
     public class Position
     {
         private readonly Coordinate _coordinate;
-        private readonly Direction _east;
+        private readonly Direction _direction;
 
-        public Position(Coordinate coordinate, Direction east)
+        public Position(Coordinate coordinate, Direction direction)
         {
             _coordinate = coordinate;
-            _east = east;
+            _direction = direction;
         }
 
-        protected bool Equals(Position other)
+        public Position MoveForward()
         {
-            return Equals(_coordinate, other._coordinate) && _east == other._east;
+            return _direction switch
+            {
+                NORTH => new Position(_coordinate.MoveNorth(), _direction),
+                EAST => new Position(_coordinate.MoveEast(), _direction),
+                SOUTH => new Position(_coordinate.MoveSouth(), _direction),
+                WEST => new Position(_coordinate.MoveWest(), _direction),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+
+        public Position TurnLeft()
+        {
+            return new Position(_coordinate, _direction.TurnLeft());
+        }
+
+        public Position TurnRight()
+        {
+            return new Position(_coordinate, _direction.TurnRight());
         }
 
         public override bool Equals(object obj)
@@ -26,9 +44,14 @@ namespace Source.Model
             return Equals((Position) obj);
         }
 
+        protected bool Equals(Position other)
+        {
+            return Equals(_coordinate, other._coordinate) && _direction == other._direction;
+        }
+
         public override int GetHashCode()
         {
-            return HashCode.Combine(_coordinate, (int) _east);
+            return HashCode.Combine(_coordinate, (int) _direction);
         }
     }
 }

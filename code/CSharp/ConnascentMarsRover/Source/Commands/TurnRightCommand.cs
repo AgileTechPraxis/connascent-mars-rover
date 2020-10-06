@@ -1,3 +1,5 @@
+using Source.Model;
+
 namespace Source.Commands
 {
     public class TurnRightCommand : ICommand
@@ -13,6 +15,11 @@ namespace Source.Commands
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
             return Equals((TurnRightCommand) obj);
+        }
+
+        public Position Execute(Position position)
+        {
+            return position.TurnRight();
         }
     }
 }

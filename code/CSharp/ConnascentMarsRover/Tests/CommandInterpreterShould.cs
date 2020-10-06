@@ -55,6 +55,7 @@ namespace Tests
             }
         }
 
+        [TestFixture]
         public class CommandInterpreterShould
         {
             [TestCaseSource(typeof(CommandInterpreterTestCases), nameof(TestCases))]
@@ -69,3 +70,5 @@ namespace Tests
         }
     }
 }
+
+    
