@@ -1,8 +1,6 @@
 package App;
 
 import Commands.ICommand;
-import Model.Coordinate;
-import Model.Direction;
 import Model.Position;
 
 import java.util.ArrayList;
