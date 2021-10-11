@@ -36,6 +36,11 @@ namespace Source.Model
             return new Position(_coordinate, _direction.TurnRight());
         }
 
+        protected bool Equals(Position other)
+        {
+            return Equals(_coordinate, other._coordinate) && _direction == other._direction;
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -44,14 +49,14 @@ namespace Source.Model
             return Equals((Position) obj);
         }
 
-        protected bool Equals(Position other)
-        {
-            return Equals(_coordinate, other._coordinate) && _direction == other._direction;
-        }
-
         public override int GetHashCode()
         {
             return HashCode.Combine(_coordinate, (int) _direction);
+        }
+
+        public override string ToString()
+        {
+            return $"{_coordinate} {_direction}";
         }
     }
 }

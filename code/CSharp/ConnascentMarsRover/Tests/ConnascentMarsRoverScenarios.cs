@@ -2,7 +2,6 @@ using System.Threading;
 using NUnit.Framework;
 using Source;
 using NSubstitute;
-using NSubstitute.ReceivedExtensions;
 using Source.Infrastructure;
 using Source.Infrastructure.Bus;
 using Source.Infrastructure.SpaceComm;
@@ -11,7 +10,6 @@ namespace Tests
 {
     public class ConnascentMarsRoverScenarios
     {
-        private const int MaxDelay = 100;
         private MarsRoverReceiver _marsRoverReceiver;
         private ISendNotifications _marsRoverSender;
         private INasaAntenna _nasaAntenna;
@@ -21,7 +19,7 @@ namespace Tests
         public void Setup()
         {
             _nasaAntenna = Substitute.For<INasaAntenna>();
-            _marsRoverReceiver = new MarsRoverReceiver(MaxDelay);
+            _marsRoverReceiver = new MarsRoverReceiver();
             _marsRoverSender = new MarsRoverSender(_nasaAntenna);
             var marsRoverController = new MarsRoverController();
             var marsRoverBus = new ServiceBus();
@@ -36,7 +34,7 @@ namespace Tests
             {
                 _marsRoverReceiver.Received(inputPackage);
             }
-            
+
             _nasaAntenna.Received().Received(new[] {"X1", "Y7", "DN"});
         }
 
@@ -48,7 +46,7 @@ namespace Tests
             {
                 _marsRoverReceiver.Received(inputPackage);
             }
-            
+
             _nasaAntenna.Received().Received(new[] {"X1", "Y7", "DN"});
         }
 
@@ -63,8 +61,9 @@ namespace Tests
             {
                 _marsRoverReceiver.Received(inputPackage);
             }
-            Thread.Sleep(MaxDelay + 100);
-            
+
+            Thread.Sleep(3100);
+
             _nasaAntenna.Received().Received(new[]
             {
                 "ER"

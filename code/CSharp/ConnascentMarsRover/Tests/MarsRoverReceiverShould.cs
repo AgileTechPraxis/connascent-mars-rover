@@ -32,8 +32,7 @@ namespace Tests
         [TestCaseSource(typeof(MarsRoverReceiverTestCases), nameof(MarsRoverReceiverTestCases.TestCases))]
         public void RebuildMessageCorrectly(string[] packets, string rebuiltMessage)
         {
-            const int maxDelay = 100;
-            _marsRoverReceiver = new MarsRoverReceiver(maxDelay);
+            _marsRoverReceiver = new MarsRoverReceiver();
             var mockServiceBus = Substitute.For<IMessageReceivedBus>();
             _marsRoverReceiver.WritesTo(mockServiceBus);
 
@@ -48,8 +47,8 @@ namespace Tests
         [Test]
         public void NotifyErrorCorrectly()
         {
-            const int maxDelay = 100;
-            _marsRoverReceiver = new MarsRoverReceiver(maxDelay);
+            const int sleepTime = 3500;
+            _marsRoverReceiver = new MarsRoverReceiver();
             var mockServiceBus = Substitute.For<IMessageReceivedBus>();
             _marsRoverReceiver.WritesTo(mockServiceBus);
 
@@ -59,7 +58,7 @@ namespace Tests
                 _marsRoverReceiver.Received(packet);
             }
 
-            Thread.Sleep(maxDelay + 30);
+            Thread.Sleep(sleepTime);
 
             mockServiceBus.Received().NotifyError();
         }
