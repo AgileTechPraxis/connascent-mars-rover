@@ -13,4 +13,9 @@
       <module name="ConnascentMarsRover" target="14" />
     </bytecodeTargetLevel>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ConnascentMarsRover" options="" />
+    </option>
+  </component>
 </project>
