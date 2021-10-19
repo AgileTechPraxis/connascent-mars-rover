@@ -1,3 +1,4 @@
+using System;
 using Source.Infrastructure.Bus;
 
 namespace Source.Infrastructure.SpaceComm
@@ -16,9 +17,9 @@ namespace Source.Infrastructure.SpaceComm
             var messageParts = message.Split(" ");
             _nasaAntenna.Received(new[]
             {
-                "X" + messageParts[0],
-                "Y" + messageParts[1],
-                "D" + messageParts[2]
+                $"X{messageParts[0]}",
+                $"Y{messageParts[1]}",
+                $"D{messageParts[2]}"
             });
         }
 

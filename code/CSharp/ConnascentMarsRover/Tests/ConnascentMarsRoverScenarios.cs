@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using NUnit.Framework;
 using Source;
@@ -35,7 +36,10 @@ namespace Tests
                 _marsRoverReceiver.Received(inputPackage);
             }
 
-            _nasaAntenna.Received().Received(new[] {"X1", "Y7", "DN"});
+            _nasaAntenna.Received()
+                .Received(
+                    Arg.Is<string[]>(datagrams =>
+                        datagrams.SequenceEqual(new[] {"X1", "Y7", "DN"})));
         }
 
         [Test]
@@ -47,7 +51,10 @@ namespace Tests
                 _marsRoverReceiver.Received(inputPackage);
             }
 
-            _nasaAntenna.Received().Received(new[] {"X1", "Y7", "DN"});
+            _nasaAntenna.Received()
+                .Received(
+                    Arg.Is<string[]>(datagrams =>
+                        datagrams.SequenceEqual(new[] {"X1", "Y7", "DN"})));
         }
 
         [Test]
@@ -63,11 +70,10 @@ namespace Tests
             }
 
             Thread.Sleep(3100);
-
-            _nasaAntenna.Received().Received(new[]
-            {
-                "ER"
-            });
+            _nasaAntenna.Received()
+                .Received(
+                    Arg.Is<string[]>(datagrams =>
+                        datagrams.SequenceEqual(new[] {"ER"})));
         }
     }
 }

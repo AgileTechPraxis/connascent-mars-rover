@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,8 +10,7 @@ namespace Source.Infrastructure.Timing
     {
         private int _millisecondsToWait;
         private Task _task;
-        readonly CancellationTokenSource _tokenSource = new CancellationTokenSource();
-        CancellationToken _cancellationToken;
+        private CancellationToken _cancellationToken = CancellationToken.None;
 
         public ISmartTimer WaitMilliseconds(int milliseconds)
         {
@@ -22,20 +22,20 @@ namespace Source.Infrastructure.Timing
         public ISmartTimer BeforeDoing(
             Action<List<string>> notifyMessage, List<string> packets)
         {
-            _cancellationToken = _tokenSource.Token;
             _task = Task.Factory.StartNew(() =>
             {
-                Task.Delay(_millisecondsToWait, _cancellationToken);
                 notifyMessage(packets);
                 Reset();
-            }, _cancellationToken);
-            
+            });
+
+            _task.Wait(_millisecondsToWait, _cancellationToken);
+            _cancellationToken = CancellationToken.None;
             return this;
         }
 
         private void Reset()
         {
-            _tokenSource.Cancel();
+            _cancellationToken = new CancellationToken();
         }
     }
 }

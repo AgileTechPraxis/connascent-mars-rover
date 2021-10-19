@@ -56,7 +56,8 @@ namespace Source.Model
 
         public override string ToString()
         {
-            return $"{_coordinate} {_direction}";
+            var direction = _direction.ToString().Substring(0, 1);
+            return $"{_coordinate} {direction}";
         }
     }
 }

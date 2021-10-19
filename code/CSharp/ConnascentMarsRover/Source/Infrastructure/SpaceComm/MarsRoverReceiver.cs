@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Source.Infrastructure.Bus;
 using Source.Infrastructure.Timing;
@@ -20,7 +21,7 @@ namespace Source.Infrastructure.SpaceComm
                 _marsRoverServiceBus.NotifyMessageReceived(message.ToString());
                 return;
             }
-
+            
             _smartTimer
                 .WaitMilliseconds(MaxDelayMilliseconds)
                 .BeforeDoing(NotifyMessage, _packets);
